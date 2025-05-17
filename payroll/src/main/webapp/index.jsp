@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Payroll System - Dashboard</title>
+    <title>Payroll System - Add Salary</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,26 +36,56 @@
         }
 
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 40px auto;
+            gap: 20px;
         }
 
-        form {
+        .profile-box {
+            flex: 1;
+            min-width: 280px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .profile-box img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .profile-box h3 {
+            margin: 10px 0 5px 0;
+        }
+
+        .profile-box p {
+            color: #555;
+        }
+
+        .form-box {
+            flex: 2;
+            min-width: 300px;
             background-color: #ffffff;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
         }
 
-        form label {
+        .form-box label {
             font-weight: bold;
             display: block;
             margin-bottom: 6px;
         }
 
-        input[type="text"] {
+        .form-box input[type="text"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 18px;
@@ -63,7 +93,7 @@
             border-radius: 5px;
         }
 
-        input[type="submit"] {
+        .form-box input[type="submit"] {
             width: 100%;
             padding: 12px;
             background-color: #28a745;
@@ -74,14 +104,13 @@
             cursor: pointer;
         }
 
-        input[type="submit"]:hover {
+        .form-box input[type="submit"]:hover {
             background-color: #218838;
         }
 
         h2 {
-            margin-top: 40px;
-            margin-bottom: 15px;
             font-size: 24px;
+            margin-top: 40px;
             border-left: 5px solid #007bff;
             padding-left: 10px;
         }
@@ -93,6 +122,7 @@
             box-shadow: 0 1px 8px rgba(0,0,0,0.05);
             border-radius: 5px;
             overflow: hidden;
+            margin-top: 30px;
         }
 
         th, td {
@@ -106,13 +136,8 @@
             color: #000;
         }
 
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
         td a {
             color: #dc3545;
-            font-weight: bold;
             text-decoration: none;
         }
 
@@ -120,40 +145,49 @@
             text-decoration: underline;
         }
 
-        .icon {
-            margin-right: 6px;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Payroll Management Dashboard</h1>
-        <p>Manage employee details and salary records</p>
+        <h1>Employee Payroll Dashboard</h1>
+        <p>View employee profile and add salary details</p>
     </header>
 
     <div class="container">
-        <form action="employee.jsp" method="post">
-            <label for="employeeName">Employee Name:</label>
-            <input type="text" id="employeeName" name="employeeName">
+        <!-- Left Profile Box -->
+        <div class="profile-box">
+            <img src="https://via.placeholder.com/120" alt="Employee Photo">
+            <h3>Employee Profile</h3>
+            <p>This section mimics a profile photo and employee brief. You can integrate real photo later.</p>
+        </div>
 
-            <label for="employeeId">Employee ID:</label>
-            <input type="text" id="employeeId" name="employeeId">
+        <!-- Right Form Box -->
+        <div class="form-box">
+            <form action="employee.jsp" method="post">
+                <label for="employeeName">Employee Name:</label>
+                <input type="text" id="employeeName" name="employeeName" placeholder="John Doe">
 
-            <label for="salary">Salary:</label>
-            <input type="text" id="salary" name="salary">
+                <label for="employeeId">Employee ID:</label>
+                <input type="text" id="employeeId" name="employeeId" placeholder="EMP123">
 
-            <input type="submit" value="Add Employee">
-        </form>
+                <label for="salary">Salary:</label>
+                <input type="text" id="salary" name="salary" placeholder="50000">
 
-        <%
-            List<Employee> employees = (List<Employee>) session.getAttribute("employees");
-            if (employees == null) {
-                employees = new ArrayList<>();
-                session.setAttribute("employees", employees);
-            }
-        %>
+                <input type="submit" value="Add Salary">
+            </form>
+        </div>
+    </div>
 
-        <h2>Employee Records</h2>
+    <%
+        List<Employee> employees = (List<Employee>) session.getAttribute("employees");
+        if (employees == null) {
+            employees = new ArrayList<>();
+            session.setAttribute("employees", employees);
+        }
+    %>
+
+    <div class="container">
+        <h2>All Employee Records</h2>
         <table>
             <tr>
                 <th>Employee ID</th>
@@ -167,9 +201,7 @@
                     <td><%= employee.getEmployeeName() %></td>
                     <td><%= employee.getSalary() %></td>
                     <td>
-                        <a href="delete.jsp?employeeId=<%= employee.getEmployeeId() %>">
-                            🗑 Delete
-                        </a>
+                        <a href="delete.jsp?employeeId=<%= employee.getEmployeeId() %>">🗑 Delete</a>
                     </td>
                 </tr>
             <% } %>
