@@ -150,7 +150,6 @@
     <div class="container">
         <!-- Left: Profile Mock -->
         <div class="profile-box">
-            <img src="https://via.placeholder.com/120" alt="Employee Photo">
             <h2>John Doe</h2>
             <p>Software Developer<br>Department: Engineering</p>
         </div>
