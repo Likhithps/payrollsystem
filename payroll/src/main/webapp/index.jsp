@@ -156,9 +156,8 @@
     <div class="container">
         <!-- Left Profile Box -->
         <div class="profile-box">
-            <img src="https://via.placeholder.com/120" alt="Employee Photo">
             <h3>Employee Profile</h3>
-            <p>This section mimics a profile photo and employee brief. You can integrate real photo later.</p>
+            <p>Profile photo of Employee.</p>
         </div>
 
         <!-- Right Form Box -->
