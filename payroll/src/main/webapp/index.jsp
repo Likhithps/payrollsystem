@@ -77,7 +77,7 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to Payroll System 22</h1>
+    <h1>Welcome to Payroll System</h1>
     <form action="employee.jsp" method="post">
         <label for="employeeName">Employee Name:</label>
         <input type="text" id="employeeName" name="employeeName"><br>
