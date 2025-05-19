@@ -144,7 +144,7 @@
 </head>
 <body>
     <header>
-        <h1>Employee Payroll Management demo</h1>
+        <h1>Employee Payroll Management system</h1>
     </header>
 
     <div class="container">
